@@ -14,7 +14,7 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutesName.initialScreen:
         return GeneratePageRoute(
-            widget: RootScreen(), routeName: settings.name);
+            widget: OrderReview(), routeName: settings.name);
       case RoutesName.invoiceReceipt:
         return GeneratePageRoute(
             widget: ShoppingReceipt(),
@@ -31,7 +31,7 @@ class RouteGenerator {
             widget: ShippingDetails(), routeName: settings.name);
       case RoutesName.OrderReview:
         return GeneratePageRoute(
-            widget: orderReview(), routeName: settings.name);
+            widget: OrderReview(), routeName: settings.name);
       // case RoutesName.inboxPage:
       //   return GeneratePageRoute(
       //       widget: WishListScreen(), routeName: settings.name);

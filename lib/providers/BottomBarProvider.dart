@@ -16,7 +16,7 @@ class BottomBarProvider extends ChangeNotifier {
 
 
   final List<Widget> screens = [
-    orderReview(),
+    OrderReview(),
     //HomeScreen(),
     ShippingDetails(),
     Container(),

@@ -15,6 +15,8 @@ Color primarybrown = Color(0xFFBE9132);
 Color textwhite = Color(0xFFffffff);
 Color black = Color(0xff000000);
 Color cream = Color(0xffE6E4E0);
+Color lightpeach = Color(0xffFEDFDD);
+
 
 Color white = Color(0xffffffff);
 Color shadowContainer = Color(0xffCFCFCFCF);
