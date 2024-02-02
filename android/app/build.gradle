@@ -1,0 +1,143 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
+apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
+apply plugin: 'kotlin-kapt'
+
+task wrapper(type: Wrapper){
+    gradleVersion = '7.2'
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}
+
+
+
+android {
+    namespace "com.shop.deal"
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.shop.deal"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
+        buildConfigField "String", "EXAMPLE_BACKEND_URL", "\"${project.getProperty("EXAMPLE_BACKEND_URL").replaceAll("^[\"\\s]*|[\"\\s]*\$", "")}\""
+    }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lint {
+        disable "IconLauncherShape"
+        disable "LogNotTimber"
+        disable "MergeRootFrame"
+        disable "TypographyEllipsis"
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+ext {
+    androidx_lifecycle_version = '2.5.1'
+    kotlin_coroutines_version = '1.6.4'
+    okhttp_version = '4.10.0'
+    retrofit_version = '2.9.0'
+    stripeTerminalVersion = "2.17.1"
+}
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "com.google.android.material:material:1.6.1"
+    implementation "androidx.appcompat:appcompat:1.5.1"
+    implementation "androidx.core:core-ktx:1.9.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version"
+    implementation 'androidx.test:monitor:1.6.1'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    // We are using Kotlin, and not Java 8, so do not use the recommended Java 8 library
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt "androidx.lifecycle:lifecycle-compiler:$androidx_lifecycle_version"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
+
+    // OK HTTP
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Stripe Terminal library
+    implementation "com.stripe:stripeterminal-localmobile:2.20.0"
+    implementation "com.stripe:stripeterminal-core:2.20.0"
+
+    // Leak canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:2.9.1"
+}

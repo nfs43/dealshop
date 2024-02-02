@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799898580779",
+    "project_id": "dealshop-fdf21",
+    "storage_bucket": "dealshop-fdf21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799898580779:android:92c7006fc3c3227830b76e",
+        "android_client_info": {
+          "package_name": "com.shop.deal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOHz68L0zfLoUxCQ2C4e0CW3wkobUIHt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
