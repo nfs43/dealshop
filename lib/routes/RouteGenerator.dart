@@ -1,7 +1,9 @@
 import 'package:dealshop/routes/GeneratePageRoute.dart';
 import 'package:dealshop/routes/Routes.dart';
-import 'package:dealshop/screens/AllProducts.dart';
+import 'package:dealshop/screens/allProducts.dart';
+import 'package:dealshop/screens/blogDetail.dart';
 import 'package:dealshop/screens/cart.dart';
+import 'package:dealshop/screens/creator.dart';
 import 'package:dealshop/screens/invoicereceipt.dart';
 import 'package:dealshop/screens/ProductDetails.dart';
 import 'package:dealshop/screens/orderReview.dart';
@@ -14,7 +16,7 @@ class RouteGenerator {
     switch (settings.name) {
       case RoutesName.initialScreen:
         return GeneratePageRoute(
-            widget: OrderReview(), routeName: settings.name);
+            widget: RootScreen(), routeName: settings.name);
       case RoutesName.invoiceReceipt:
         return GeneratePageRoute(
             widget: ShoppingReceipt(),
@@ -32,6 +34,12 @@ class RouteGenerator {
       case RoutesName.OrderReview:
         return GeneratePageRoute(
             widget: OrderReview(), routeName: settings.name);
+      case RoutesName.Addcreator:
+        return GeneratePageRoute(
+            widget: AddCreator(), routeName: settings.name);
+      case RoutesName.Blogdetail:
+        return GeneratePageRoute(
+            widget: BlogDetail(), routeName: settings.name);
       // case RoutesName.inboxPage:
       //   return GeneratePageRoute(
       //       widget: WishListScreen(), routeName: settings.name);

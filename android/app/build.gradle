@@ -39,7 +39,7 @@ tasks.register("prepareKotlinBuildScriptModel"){}
 
 android {
     namespace "com.shop.deal"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
 

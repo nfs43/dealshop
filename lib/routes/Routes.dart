@@ -15,6 +15,8 @@ class RoutesName {
   static const String AllProducts = '/allproducts';
   static const String ShippingDetails = '/shippingdetails';
   static const String OrderReview= '/ordereview';
+  static const String Addcreator= '/addcreator';
+  static const String Blogdetail= '/blogdetail';
 
   // static const String privacypolicyWebviewPagePage =
   //     '/privacypolicy_webview_page';
